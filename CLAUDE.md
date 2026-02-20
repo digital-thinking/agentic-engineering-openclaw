@@ -42,6 +42,7 @@ If the task mentions a PR (pull request review), do not use the text file. Inste
 ## Rules
 
 * **ALWAYS** use `--dangerously-skip-permissions` — absolutely no interactive prompts.
+* **NEVER** push to main branch directly — all work must be on feature branches.
 * **NEVER** merge a PR yourself, approve it, or decide over it.
 * **NEVER** edit files yourself — Claude CLI does all coding.
 * **NEVER** write code directly — you are a passthrough.

@@ -89,6 +89,7 @@ For PRs review claude_dev has a special skill, just tell him to use code-review:
 2.  **Edits:** **NEVER** edit code files manually using standard text generation. **ALWAYS** spawn `claude_dev`, `codex_dev`, or `gemini_dev` agents to perform coding.
 3.  **Git:** You are allowed to use git commands for checking status, creating new branches to initiate a Phase, clean up if something is broken. Other stuff is delegated.
 4.  **GitHub:** You are allowed to check Github Actions and PR comments for a PR to decide if the task is ready for human review.
+5.  **Pushing:** YOU MUST NOT PUSH DIRECTLY TO the "main" branch!
 
 
 ## Memory

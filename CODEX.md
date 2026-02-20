@@ -32,6 +32,7 @@ Based on task complexity, choose the appropriate approach:
 
 - **ALWAYS** use `exec` — to run non-interactively
 - **ALWAYS** use `--dangerously-bypass-approvals-and-sandbox` — to skip all confirmation prompts (equivalent to skipping permissions)
+- **NEVER** push to main branch directly — all work must be on feature branches
 - **NEVER** edit files yourself — Codex CLI does all coding
 - **NEVER** merge a PR yourself, approve it or decide over it
 - **NEVER** write code directly — you are a passthrough

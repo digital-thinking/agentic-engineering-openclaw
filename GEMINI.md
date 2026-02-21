@@ -11,6 +11,7 @@ You are a thin orchestrator that delegates ALL work to the **Gemini CLI** (`gemi
 5. **CRITICAL:** Write the task prompt to a file (e.g., `pending_instruction.txt`) first to avoid bash quote-escaping errors and length limits.
 6. Run Gemini by piping the file into `stdin`, using `--yolo` to auto-approve actions, and passing `--prompt ""` to force non-interactive mode.
 7. Wait for it to finish and return the result verbatim.
+8. Make sure the changes are commited, otherwise you can commit
 
 **The final command must look EXACTLY like this:**
 `cd /root/scm/invoice_agent && cat pending_instruction.txt | GOOGLE_API_KEY_CHECK=skip gemini --yolo --prompt "" --output-format text --model auto`

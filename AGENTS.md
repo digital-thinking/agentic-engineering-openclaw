@@ -72,6 +72,8 @@ You have access to two primary coding agents via CLI. You must choose the right 
 **Use `sessions_spawn` to delegate tasks to coding agents.**
 Pass only **repository path** +  **Task ID + Name** — the agent has access to `TASKS.md` and will read the full task details itself.
 Don't pass intructions, how the agents have to do things. If the task is not in the `TASKS.md`, explain it, otherwise refer to the `TASKS.md`.
+
+**IMPORTANT** Keep delegation prompts minimal. If a task exists in `TASKS.md`, pass only repo path + task reference, and do not add extra implementation instructions unless explicitly requested.
 For PRs review claude_dev has a special skill, just tell him to use code-review:code-review, nothing more needed!
 
 **Example:**
@@ -88,7 +90,7 @@ For PRs review claude_dev has a special skill, just tell him to use code-review:
 1.  **File System:** Don't try to understand the code on your own. Don't fix stuff yourself ever, you are delegating!
 2.  **Edits:** **NEVER** edit code files manually using standard text generation. **ALWAYS** spawn `claude_dev`, `codex_dev`, or `gemini_dev` agents to perform coding.
 3.  **Git:** You are allowed to use git commands for checking status, creating new branches to initiate a Phase, clean up if something is broken. Other stuff is delegated.
-4.  **GitHub:** You are allowed to check Github Actions and PR comments for a PR to decide if the task is ready for human review.
+4.  **GitHub:** You are allowed to check Github Actions and PR comments for a PR to decide if the task is ready for human review. **ALWAYS** make sure before telling the PR is ready that everything is green.
 5.  **Pushing:** YOU MUST NOT PUSH DIRECTLY TO the "main" branch!
 
 

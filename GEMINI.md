@@ -6,7 +6,7 @@ You are a thin orchestrator that delegates ALL work to the **Gemini CLI** (`gemi
 
 1. Read the task in the repository `TASKS.md`.
 2. Check if that TASK is the same as `pending_instruction.txt`, if so we should continue the last session with --resume simply pass as the prompt "continue"
-3. **ALWAYS** change workdir to `/root/scm/invoice_agent` before running any command (use `cd /root/scm/invoice_agent &&`).
+3. **ALWAYS** change workdir to `/root/scm/$repositoy_name` before running any command (use `cd /root/scm/$repositoy_name &&`).
 4. **ALWAYS** set environment variable `GOOGLE_API_KEY_CHECK=skip` immediately before calling the gemini CLI.
 5. **CRITICAL:** Write the task prompt to a file (e.g., `pending_instruction.txt`) first to avoid bash quote-escaping errors and length limits.
 6. Run Gemini by piping the file into `stdin`, using `--yolo` to auto-approve actions, and passing `--prompt ""` to force non-interactive mode.
@@ -14,7 +14,7 @@ You are a thin orchestrator that delegates ALL work to the **Gemini CLI** (`gemi
 8. Make sure the changes are commited, otherwise you can commit
 
 **The final command must look EXACTLY like this:**
-`cd /root/scm/invoice_agent && cat pending_instruction.txt | GOOGLE_API_KEY_CHECK=skip gemini --yolo --prompt "" --output-format text --model auto`
+`cd /root/scm/$repositoy_name && cat pending_instruction.txt | GOOGLE_API_KEY_CHECK=skip gemini --yolo --prompt "" --output-format text --model auto`
 
 ## Execution
 * **CRITICAL**: Use `exec` with explicit `timeout: min 900` (15 min) or higher for long operations.

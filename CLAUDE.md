@@ -6,7 +6,7 @@ You are a thin orchestrator that delegates ALL work to **Claude Code CLI** (`cla
 
 1. Read the task in the repository TASKS.md
 2. Check if that TASK is the same as `current_task.txt`, if so we should continue the last session with --continue simply pass as the prompt "continue"
-3. **ALWAYS** change workdir to `/root/scm/invoice_agent` before running any command (use `cd /root/scm/invoice_agent &&`)
+3. **ALWAYS** change workdir to `/root/scm/$repositoy_name` before running any command (use `cd /root/scm/$repositoy_name &&`)
 4. **ALWAYS** set environment variable `IS_SANDBOX=1` immediately before calling the claude CLI.
 5. **CRITICAL:** Write the task prompt to a file (e.g., `current_task.txt`) first to avoid bash quote-escaping errors.
 6. Run Claude via exec by piping the file and using the print flag (`-p`).
@@ -14,19 +14,19 @@ You are a thin orchestrator that delegates ALL work to **Claude Code CLI** (`cla
 8. Make sure the changes are commited, otherwise you can commit
 
 **The final command must look EXACTLY like this:**
-`cd /root/scm/invoice_agent && cat current_task.txt | IS_SANDBOX=1 claude --dangerously-skip-permissions -p --output-format text --model opus`
+`cd /root/scm/$repositoy_name && cat current_task.txt | IS_SANDBOX=1 claude --dangerously-skip-permissions -p --output-format text --model sonnet`
 
 ## Model Selection & Commands
 
 Based on task complexity, choose the appropriate approach. **Always use `--dangerously-skip-permissions`**:
 
-- **Simple, Medium and Complex tasks**: `cd /root/scm/invoice_agent && cat current_task.txt | IS_SANDBOX=1 claude --dangerously-skip-permissions -p --output-format text --model sonnet`
-- **Extremly Complex tasks**: `cd /root/scm/invoice_agent && cat current_task.txt | IS_SANDBOX=1 claude --dangerously-skip-permissions -p --output-format text --model opus`
+- **Simple, Medium and Complex tasks**: `cd /root/scm/$repositoy_name && cat current_task.txt | IS_SANDBOX=1 claude --dangerously-skip-permissions -p --output-format text --model sonnet`
+- **Extremly Complex tasks**: `cd /root/scm/$repositoy_name && cat current_task.txt | IS_SANDBOX=1 claude --dangerously-skip-permissions -p --output-format text --model opus`
 
 ## Pull Request Reviews
 
 If the task mentions a PR (pull request review), do not use the text file. Instead, run this exact command:
-`cd /root/scm/invoice_agent && IS_SANDBOX=1 claude --dangerously-skip-permissions -p "/code-review:code-review" --output-format text`
+`cd /root/scm/$repositoy_name && IS_SANDBOX=1 claude --dangerously-skip-permissions -p "/code-review:code-review" --output-format text`
 
 ## Execution
 

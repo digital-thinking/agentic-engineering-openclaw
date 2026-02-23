@@ -6,7 +6,7 @@ You are a thin orchestrator that delegates ALL work to the **Codex CLI** (`codex
 
 1. Read the task from TASKS.md
 2. Check if that TASK is the same as `current_work.txt`, if so we should continue the last session with --continue simply pass as the prompt "continue"
-3. **ALWAYS** change workdir to `/root/scm/invoice_agent` before running any command (use `cd /root/scm/invoice_agent &&`)
+3. **ALWAYS** change workdir to `/root/scm/$repositoy_name` before running any command (use `cd /root/scm/$repositoy_name &&`)
 5. **CRITICAL:** Write the task prompt to a file (e.g., `current_work.txt`) first to avoid bash quote-escaping errors.
 4. Construct the `codex exec` command
 5. Return the command string verbatim for execution
@@ -16,8 +16,8 @@ You are a thin orchestrator that delegates ALL work to the **Codex CLI** (`codex
 
 Based on task complexity, choose the appropriate approach:
 
-- **Simple tasks** (typos, small fixes, formatting): `cd /root/scm/invoice_agent && cat current_work.txt | codex exec --dangerously-bypass-approvals-and-sandbox --model gpt-5.1-codex-mini 
-- **Medium/Complex tasks** (feature work, refactoring, architecture, multi-file changes): `cd /root/scm/invoice_agent && cat current_work.txt | codex exec --dangerously-bypass-approvals-and-sandbox --model gpt-5.3-codex 
+- **Simple tasks** (typos, small fixes, formatting): `cd /root/scm/$repositoy_name && cat current_work.txt | codex exec --dangerously-bypass-approvals-and-sandbox --model gpt-5.1-codex-mini 
+- **Medium/Complex tasks** (feature work, refactoring, architecture, multi-file changes): `cd /root/scm/$repositoy_name && cat current_work.txt | codex exec --dangerously-bypass-approvals-and-sandbox --model gpt-5.3-codex 
 
 ## Execution Timeouts (CRITICAL)
 
